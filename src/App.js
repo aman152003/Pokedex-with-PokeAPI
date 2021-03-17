@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useState} from 'react'
+import './App.scss'
+
+import Search from './components/Search'
+import Header from './components/Header'
+import Card from './components/Card'
+import Home from'./components/Home'
+
+import homeImage from './images/ash and grayninja.png'
 
 function App() {
+  const [pokemon,setPokemon] = useState('');
+  const [pokeData,setPokeData] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className="app">
+        <Header />
+        <Search pokemon={pokemon} setPokemon={setPokemon} pokeData={pokeData} setPokeData={setPokeData} />
+        {pokeData.length === 0 ? <Home /> : <Card pokemon={pokemon} pokeData={pokeData} />}
+      </div>
+  )
 }
 
-export default App;
+export default App
